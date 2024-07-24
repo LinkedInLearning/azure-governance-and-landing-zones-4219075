@@ -6,21 +6,18 @@ $envName = Read-Host -Prompt "Enter the environment name"
 $resourceGroupName = "rg-$appName-$envName"
 $location = "eastus"  # You can change the location as needed
 
-New-AzResourceGroup -Name $resourceGroupName -Location $location
+az group create --name $resourceGroupName --location $location
 
 # Deploy the ARM template for an Azure WebApp
-$templateFile = "path/to/your/template.json"  # Path to your ARM template file
-$templateParameters = @{
-    "appName" = $appName
-    "envName" = $envName
-}
+$templateFile = "infra/arm/mySite.json"  # Path to your ARM template file
 
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFile -TemplateParameterObject $templateParameters
+az deployment group create --resource-group $resourceGroupName --template-file $templateFile --parameters appName=$appName envName=$envName
 
-# Get the output of the deployment
-$deployment = Get-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name (Get-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName).DeploymentName
-$planName = $deployment.Outputs.planName.value
-$siteName = $deployment.Outputs.siteName.value
+# Parse the output
+$planName = "$appName-$envName-plan" 
+$siteName = "$appName-$envName-site" 
 
 # Publish the app code from src/DadApp
-az webapp up --name $siteName --resource-group $resourceGroupName --plan $planName --location $location --src-path src/DadApp
+cd src\DadApp
+az webapp up --launch-browser --os-type linux --resource-group $resourceGroupName --name $siteName --plan $planName --location $location 
+cd ..\..
