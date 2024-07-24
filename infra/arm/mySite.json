@@ -8,7 +8,8 @@
                 "description": "description"
             }
         },
-        "envName" : { "type" : "string"}
+        "envName" : { "type" : "string", "allowedValues":["arm","bicep","pulumi","ansible"]},
+        "color": { "type": "string"}
     },
     "functions": [],
     "variables": {
@@ -60,8 +61,8 @@
                         "displayName": "config"
                     },
                     "properties": {
-                        "EnvName": "arm",
-                        "FavoriteColor": "cyan",
+                        "EnvName": "[parameters('envName')]",
+                        "FavoriteColor": "[parameters('color')]",
                         "SCM_DO_BUILD_DURING_DEPLOYMENT":"True"
                     }
                 }
