@@ -21,3 +21,19 @@ $siteName = "$appName-$envName-site"
 cd src\DadApp
 az webapp up --launch-browser --os-type linux --resource-group $rg --name $siteName --plan $planName --location $location 
 cd ..\..
+
+
+
+# Bicep
+
+az bicep decompile -f infra/arm/mySite.json
+
+$envName = "bicep"
+$planName = "$appName-$envName-plan" 
+$siteName = "$appName-$envName-site" 
+
+az deployment sub create --location centralus --template-file ./infra/arm/main.bicep --parameters appName=$appName envName=$envName 
+
+cd src\DadApp
+az webapp up --launch-browser --os-type linux --resource-group $rg --name $siteName --plan $planName --location $location 
+cd ..\..
