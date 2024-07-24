@@ -1,7 +1,0 @@
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\DadApp
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.Development.json
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.json
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\DadApp.dll
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\DadApp.deps.json
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\DadApp.runtimeconfig.json
-C:\Users\linkedin\source\repos\DadApp\DadApp\obj\Release\net8.0\linux-x64\PubTmp\Out\DadApp.pdb
