@@ -1,0 +1,72 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "envName" : { "type" : "string"}
+    },
+    "functions": [],
+    "variables": {
+        "prefix": "[concat(parameters('appName'),'-',parameters('envName'))]",
+        "planName" : "[concat(variables('prefix'),'-plan')]",
+        "siteName": "[concat(variables('prefix'),'-site')]"
+    },
+    "resources": [
+        {
+            "name": "[variables('planName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "kind":"app,linux",
+            "sku": {
+                "name": "S1",
+                "capacity": 1
+            },
+            "properties": {
+                "reserved": true
+            }
+        },
+        {
+            "name": "[variables('siteName')]",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-12-01",
+            "location": "[resourceGroup().location]",
+            "kind":"linux,app",
+            "tags": {
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('planName'))]": "Resource",
+                "displayName": "[variables('siteName')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('planName'))]"
+            ],
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('planName'))]"
+            },
+            "resources": [
+                {
+                    "name": "appsettings",
+                    "type": "config",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', variables('siteName'))]"
+                    ],
+                    "tags": {
+                        "displayName": "config"
+                    },
+                    "properties": {
+                        "EnvName": "arm",
+                        "FavoriteColor": "cyan",
+                        "SCM_DO_BUILD_DURING_DEPLOYMENT":"True"
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {}
+}
