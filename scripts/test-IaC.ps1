@@ -37,3 +37,31 @@ az deployment sub create --location centralus --template-file ./infra/arm/main.b
 cd src\DadApp
 az webapp up --launch-browser --os-type linux --resource-group $rg --name $siteName --plan $planName --location $location 
 cd ..\..
+
+
+
+# Terraform
+cd infra/tf
+terraform init
+
+# Run Terraform plan and save to a file
+terraform plan -out myPlan.tfplan -var-file params.tfvars
+
+# Show the plan
+terraform show myPlan.tfplan
+
+# Apply the plan
+terraform apply myPlan.tfplan
+
+
+$tf_site_name = terraform output site_name
+$tf_host_name = terraform output host_name
+$tf_rg_name = terraform output rg_name
+
+cd ..\..
+cd src\DadApp
+az webapp up -g $tf_rg_name --launch-browser --os-type linux --plan $tf_host_name --name $tf_site_name
+cd ..\..
+
+# Cleanup
+terraform destroy
