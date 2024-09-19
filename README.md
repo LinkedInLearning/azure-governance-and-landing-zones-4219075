@@ -1,7 +1,11 @@
-# COURSENAME
+# Best Practices for Building a Well-Governed Cloud
 This is the repository for the LinkedIn Learning course `course-name`. The full course is available from [LinkedIn Learning][lil-course-url].
 
-![course-name-alt-text][lil-thumbnail-url] 
+![lil-thumbnail-url] 
+
+## Course Description
+
+This course examines how resource consistency, observability, and access management work together to create a successful cloud environment in Azure. Join instructor Mike Benkovich as he explores how to operationalize cloud infrastructure and the patterns of cloud application management, focusing on connected services, resource consistency, and automation in Azure. Try out your new skills along the way in practical demos that show you how to define a landing zone, integrate with cloud services, work with infrastructure-as-code tools like ARM and Bicep, and automate with continuous delivery platforms such as Azure DevOps and GitHub Actions. By the end of this course, you’ll be prepared to use Azure's native tools to define compliance and policy and create landing zones for development teams to deliver effective solutions and maintain a well-governed cloud.
 
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
@@ -22,15 +26,18 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+## Instructor
+
+Mike Benkovich
+
+Former Microsoft Evangelist, Current Software Architect
+                      
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/mike-benkovich?u=104).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/azure-governance-and-landing-zones-best-practices-for-building-a-well-governed-cloud
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4D0DAQFkef8jVq6ffg/learning-public-crop_675_1200/learning-public-crop_675_1200/0/1724869173752?e=2147483647&v=beta&t=Wgo8BY_VsiwtPfnOCL5__hwtC07FAb6WQlBer5KjyMY
 
